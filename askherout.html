@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Programmer RIZZ</title>
+    <title>RIZZ her like a PRO-grammer</title>
     <style>
       body {
         background-image: url("https://w0.peakpx.com/wallpaper/304/545/HD-wallpaper-happy-valentine-s-day-valentine-card-cute-balloon-butterfly-heart-white-teddy-bear-pink.jpg");
@@ -39,18 +39,35 @@
         <img src="background stuff\love-you-love.gif" alt="A gif image">
         <p>Nothing would make me happier than being able to say that you're my girl.</p>
         <p>So with that being said....</p>
-        <h1>Will you be my Girlfriend?</h1>
-      <label class="checkbox">
-        <input type="radio" name="answer" value="yes"> Yes
-      </label>
-      <label class="checkbox">
-        <input type="radio" name="answer" value="maybe"> Maybe
-      </label>
-      <label class="checkbox">
-        <input type="radio" name="answer" value="no"> No
-      </label>
-    </div>
-  </body>
-</html>
+        <h1>Can I be Your BOYFRIEND?</h1>
+        <label class="checkbox">
+          <input type="radio" name="answer" value="yes" id="yes"> Yes
+        </label>
+        <label class="checkbox">
+          <input type="radio" name="answer" value="maybe" id="maybe"> Maybe
+        </label>
+        <label class="checkbox">
+          <input type="radio" name="answer" value="no" id="no"> No
+        </label>
+      </div>
+      <script>
+        const yesRadio = document.getElementById("yes");
+        const maybeRadio = document.getElementById("maybe");
+        const noRadio = document.getElementById("no");
+  
+        yesRadio.addEventListener("click", function() {
+          window.location.href = "yes.html";
+        });
+  
+        maybeRadio.addEventListener("click", function() {
+          window.location.href = "maybe.html";
+        });
+  
+        noRadio.addEventListener("click", function() {
+          window.location.href = "no.html";
+        });
+      </script>
+    </body>
+  </html>
 
       

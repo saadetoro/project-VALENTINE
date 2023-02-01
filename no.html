@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tuff! Better luck  next time</title>
+  <style>
+    body {
+      background-color: grey;
+    }
+    h1 {
+      font-size: 36px;
+      color: white;
+      text-align: center;
+    }
+    .container {
+      width: 60%;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .share-button {
+      background-color: red;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      margin-top: 20px;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="background stuff\haha-no-how-about-no.gif" alt="A gif image">
+    <h1>Ummm........</h1>
+    <h1>NO😂😂!! I don't like you like that, you're like a brother to me😊</h1>
+    <button onclick="copyToClipboard()">Share your response</button>
+    <script>
+        function copyToClipboard() {
+          navigator.clipboard.writeText(window.location.href).then(function() {
+            alert("Link copied to clipboard");
+          }, function(err) {
+            console.error("Failed to copy text: ", err);
+          });
+        }
+        </script>
+  </div>
+</body>
+</html>
