@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>RIZZ her like a PRO-grammer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      body {
+        background-image: url("https://w0.peakpx.com/wallpaper/304/545/HD-wallpaper-happy-valentine-s-day-valentine-card-cute-balloon-butterfly-heart-white-teddy-bear-pink.jpg");
+        background-size: contain;
+        background-repeat: repeat;
+        background-attachment: fixed;
+      }
+      h1 {
+        text-align: left;
+        font-size: 36px;
+        color: black;
+        margin-left: 150px;
+      }
+      p {
+        text-align: left;
+        font-size: 24px;
+        color: black;
+        margin-left: 20px;
+      }
+      .container {
+        width: 80%;
+        margin: 0 auto;
+        text-align: left;
+        margin-left: 0px;
+      }
+      .checkbox {
+        margin-top: 40px;
+        color: black;
+        margin-left: 135px;
+      }
+
+      /* Media queries for different screen sizes */
+      @media only screen and (max-width: 768px) {
+        h1 {
+          font-size: 24px;
+        }
+        p {
+          font-size: 18px;
+        }
+        .container {
+          width: 90%;
+        }
+      }
+      
+      @media only screen and (max-width: 480px) {
+        h1 {
+          font-size: 20px;
+        }
+        p {
+          font-size: 16px;
+        }
+        .container {
+          width: 95%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+        <img src="/love-you-love.gif" alt="A gif image">
+        <p>Nothing would make me happier than being able to say that you're my girl.</p>
+        <p>So with that being said....</p>
+        <h1>Can I be Your BOYFRIEND?</h1>
+        <label class="checkbox">
+          <input type="radio" name="answer" value="yes" id="yes"> Yes
+        </label>
+        <label class="checkbox">
+          <input type="radio" name="answer" value="maybe" id="maybe"> Maybe
+        </label>
+        <label class="checkbox">
+          <input type="radio" name="answer" value="no" id="no"> No
+        </label>
+      </div>
+      <script>
+        const yesRadio = document.getElementById("yes");
+        const maybeRadio = document.getElementById("maybe");
+        const noRadio = document.getElementById("no");
+  
+        yesRadio.addEventListener("click", function() {
+          window.location.href = "yes.html";
+        });
+  
+        maybeRadio.addEventListener("click", function() {
+          window.location.href = "maybe.html";
+        });
+  
+        noRadio.addEventListener("click", function() {
+          window.location.href = "nRP.html";
+        });
+      </script>
+    </body>
+  </html>

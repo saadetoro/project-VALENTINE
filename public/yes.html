@@ -1,32 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond|Playfair+Display&display=swap" rel="stylesheet">
   <title>She said YES</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
-      background-image: url("https://as1.ftcdn.net/v2/jpg/04/11/55/68/1000_F_411556868_wjyBW5J7Ls2ywKu60uTOTq0eMmxLM9y8.jpg");
-        background-size: contain;
+      background-image: url("https://www.shutterstock.com/blog/wp-content/uploads/sites/5/2018/12/shutterstock_92960689.jpg");
+        background-size: 90% 95%;
         background-repeat: repeat;
         background-attachment: fixed;
     }
     h1 {
+      text-align: left;
       font-size: 36px;
-      color: #1601FF;
-      text-align: center;
+      font-family: 'Cormorant Garamond', serif;
+      color: white;
+      margin-left: 70px;
     }
     .container {
-      width: 60%;
+      width: 80%;
       margin: 0 auto;
-      text-align: center;
-    }
-    .share-button {
-      background-color: red;
-      color: white;
-      padding: 10px 20px;
-      border-radius: 5px;
-      margin-top: 20px;
-      text-decoration: none;
+      text-align: left;
+      margin-left: 0px;
+      margin-top: 270px;
+      position: relative;
     }
 
     /* Media queries for different screen sizes */
@@ -53,23 +51,92 @@
           width: 95%;
         }
       }
+
+    /* Custom audio controls */
+    .audio-controls {
+      display: flex;
+      align-items: center;
+      margin-top: 20px;
+    }
+    .audio-controls button {
+      background-color: transparent;
+      border: none;
+      font-size: 24px;
+      color: white;
+      margin-right: 10px;
+      margin-left: 370px;
+      cursor: pointer;
+      outline: none;
+    }
   </style>
 </head>
 <body>
   <div class="container">
-    <!img src="/ksi-yes.gif" alt="A gif image" style = "height : 50%">
     <h1>Finally! Took you long enough.</h1>
     <h1>Yes!! You can be my BOYFRIEND🥰🥰</h1>
-    <button onclick="copyToClipboard()">Share your response</button>
+    <div class="audio-controls">
+      <button id="play-pause-btn">&#9658;</button>
+    </div>
+    <audio id="myAudio" preload="auto">
+      <source src="Ed_Sheeran-Perfect.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
     <script>
-        function copyToClipboard() {
-          navigator.clipboard.writeText(window.location.href).then(function() {
-            alert("Link copied to clipboard");
-          }, function(err) {
-            console.error("Failed to copy text: ", err);
-          });
+      var audio = document.getElementById("myAudio");
+      var playPauseBtn = document.getElementById("play-pause-btn");
+
+      // Set the start and end points of the audio
+      var startTime = 15;
+      var endTime = 119;
+
+      // Store the time when the audio is paused
+      var pauseTime = 0;
+
+      // Set the current time, play the audio, and change the button icon to pause
+      audio.currentTime = startTime;
+      audio.play();
+      playPauseBtn.innerHTML = "&#10074;&#10074;";
+
+      // When the play/pause button is clicked, toggle the playback
+      playPauseBtn.addEventListener("click", function() {
+        if (audio.paused) {
+          // If the audio is paused, set the starting point and play the audio
+          audio.currentTime = pauseTime || startTime;
+          audio.play();
+          playPauseBtn.innerHTML = "&#10074;&#10074;";
+        } else {
+          // If the audio is playing, pause it and store the current time
+          audio.pause();
+          pauseTime = audio.currentTime;
+          playPauseBtn.innerHTML = "&#9658;";
         }
-        </script>
+      });
+
+      // Update the play/pause button state when the audio is playing
+      audio.addEventListener("playing", function() {
+        playPauseBtn.innerHTML = "&#10074;&#10074;";
+      });
+
+      // Update the play/pause button state when the audio is paused
+      audio.addEventListener("pause", function() {
+        playPauseBtn.innerHTML = "&#9658;";
+      });
+
+      // Pause the audio if the current time is greater than the end time
+      audio.addEventListener("timeupdate", function() {
+        if (audio.currentTime >= endTime) {
+          audio.pause();
+          audio.currentTime = startTime;
+          playPauseBtn.innerHTML = "&#9658;";
+        }
+      });
+
+      // When the audio ends, set the current time to the starting point and play the audio again
+      audio.addEventListener("ended", function() {
+        audio.currentTime = startTime;
+        audio.play();
+      });
+    </script>
   </div>
 </body>
 </html>

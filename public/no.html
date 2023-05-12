@@ -58,6 +58,10 @@
     <h1>Ummm........</h1>
     <h1>NO😂😂!! I don't like you like that, you're like a brother to me😊</h1>
     <button onclick="copyToClipboard()">Share your response</button>
+    <audio controls autoplay loop preload = "auto">
+      <source src="Bloody_Civilian-I_Don't_Like_You.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
     <script>
         function copyToClipboard() {
           navigator.clipboard.writeText(window.location.href).then(function() {
@@ -66,7 +70,15 @@
             console.error("Failed to copy text: ", err);
           });
         }
-        </script>
+
+        var audio = document.querySelector('audio');
+        audio.currentTime = 15;
+        audio.addEventListener('timeupdate', function() {
+          if (this.currentTime >= 77) {
+            this.currentTime = 15;
+          }
+        }, false);
+    </script>
   </div>
 </body>
 </html>

@@ -1,67 +1,87 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>RIZZ her like a PRO-grammer</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-      body {
-        background-image: url("https://w0.peakpx.com/wallpaper/304/545/HD-wallpaper-happy-valentine-s-day-valentine-card-cute-balloon-butterfly-heart-white-teddy-bear-pink.jpg");
-        background-size: contain;
-        background-repeat: repeat;
-        background-attachment: fixed;
-      }
-      h1 {
-        text-align: left;
-        font-size: 36px;
-        color: black;
-        margin-left: 150px;
-      }
-      p {
-        text-align: left;
-        font-size: 24px;
-        color: black;
-        margin-left: 20px;
-      }
-      .container {
-        width: 80%;
-        margin: 0 auto;
-        text-align: left;
-        margin-left: 0px;
-      }
-      .checkbox {
-        margin-top: 40px;
-        color: black;
-        margin-left: 135px;
-      }
-
-      /* Media queries for different screen sizes */
-      @media only screen and (max-width: 768px) {
+  <html>
+    <head>
+      <title>RIZZ her like a PRO-grammer</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <style>
+        body {
+          background-image: url("https://w0.peakpx.com/wallpaper/304/545/HD-wallpaper-happy-valentine-s-day-valentine-card-cute-balloon-butterfly-heart-white-teddy-bear-pink.jpg");
+          background-size: contain;
+          background-repeat: repeat;
+          background-attachment: fixed;
+        }
         h1 {
+          text-align: left;
+          font-size: 36px;
+          color: black;
+          margin-left: 150px;
+        }
+        p {
+          text-align: left;
           font-size: 24px;
-        }
-        p {
-          font-size: 18px;
+          color: black;
+          margin-left: 20px;
         }
         .container {
-          width: 90%;
+          width: 80%;
+          margin: 0 auto;
+          text-align: left;
+          margin-left: 0px;
+          position: relative; /* add position:relative to the container */
         }
-      }
-      
-      @media only screen and (max-width: 480px) {
-        h1 {
-          font-size: 20px;
+        .checkbox {
+          margin-top: 40px;
+          color: black;
+          margin-left: 135px;
         }
-        p {
+  
+        /* Media queries for different screen sizes */
+        @media only screen and (max-width: 768px) {
+          h1 {
+            font-size: 24px;
+          }
+          p {
+            font-size: 18px;
+          }
+          .container {
+            width: 90%;
+          }
+        }
+        
+        @media only screen and (max-width: 480px) {
+          h1 {
+            font-size: 20px;
+          }
+          p {
+            font-size: 16px;
+          }
+          .container {
+            width: 95%;
+          }
+        }
+  
+        #share-button {
+          position: absolute;
+          bottom: -60px;
+          left: 33.5%;
+          transform: translateX(-50%);
+          padding: 10px 20px;
+          background-color: #ff69b4;
+          color: white;
           font-size: 16px;
-        }
-        .container {
-          width: 95%;
-        }
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
       }
-    </style>
-  </head>
-  <body>
-    <div class="container">
+  
+  
+        #share-button:hover {
+          background-color: #ff3e8e;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="container">
         <img src="/love-you-love.gif" alt="A gif image">
         <p>Nothing would make me happier than being able to say that you're my girl.</p>
         <p>So with that being said....</p>
@@ -75,25 +95,27 @@
         <label class="checkbox">
           <input type="radio" name="answer" value="no" id="no"> No
         </label>
+        <button id="share-button">Share Response</button>
       </div>
+      <script src="https://cdnjs.cloudflare.com/ajax/libsjquery/3.6.0/jquery.min.js"></script>
       <script>
-        const yesRadio = document.getElementById("yes");
-        const maybeRadio = document.getElementById("maybe");
-        const noRadio = document.getElementById("no");
+          $(document).ready(function() {
+              $('input[type="radio"]').click(function() {
+                  if($(this).prop("checked") == true) {
+                      $('input[type="radio"]').parent().removeClass("selected");
+                      $(this).parent().addClass("selected");
+                  }
+              });
   
-        yesRadio.addEventListener("click", function() {
-          window.location.href = "yes.html";
-        });
-  
-        maybeRadio.addEventListener("click", function() {
-          window.location.href = "maybe.html";
-        });
-  
-        noRadio.addEventListener("click", function() {
-          window.location.href = "no.html";
-        });
+              $('#share-button').click(function() {
+                  var selectedAnswer = $('input[type="radio"]:checked').val();
+                  if(selectedAnswer) {
+                      var message = "I just answered '" + selectedAnswer + "' to the question 'Can I be Your BOYFRIEND?'";
+                      window.alert(message);
+                  } else {
+                      window.alert("Please select an answer before sharing.");
+                  }});
+          });
       </script>
-    </body>
+      </body>
   </html>
-
-      
