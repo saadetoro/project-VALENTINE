@@ -1,84 +1,222 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Tuff! Better luck  next time</title>
+  <title>Response Page</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
-      background-color: grey;
+      background-color: #2b2b2b;
+      color: #c5c5c5;
+      margin: 0;
+      overflow: hidden;
     }
-    h1 {
-      font-size: 36px;
-      color: white;
+
+    .curtain-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #333;
+      z-index: 9999;
+    }
+
+    .curtain-panel {
+      display: flex;
+      height: 100%;
+      width: 100%;
+      cursor: pointer;
+      overflow: hidden;
+    }
+
+    .curtain-panel .curtain {
+      width: 50%;
+      background-color: maroon;
+      position: relative;
+      transition: transform 0.5s ease-out;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+      transform-origin: top center;
+      opacity: 1;
+    }
+
+    .curtain-panel .curtain:before {
+      content: attr(data-title);
       text-align: center;
+      width: 200%;
+      position: absolute;
+      top: 50%;
+      line-height: 0;
+      font-size: 2.5em;
     }
-    .container {
+
+    .curtain-panel .left-curtain:before {
+      left: 0;
+    }
+
+    .curtain-panel .right-curtain:before {
+      right: 0;
+    }
+
+    .curtain-panel .curtain:after {
+      content: "";
+      background-size: 20px 20px;
+      background-image: radial-gradient(circle at 10px -5px, rgba(0, 0, 0, 0) 12px, #fff 13px);
+      display: block;
+      height: 10px;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+
+    .curtain-trigger {
+      position: absolute;
+      opacity: 0;
+    }
+
+    .curtain-trigger:checked ~ .left-curtain {
+      transform: translateX(-100%);
+    }
+            
+    .curtain-trigger:checked ~ .right-curtain {
+      transform: translateX(100%);
+    }
+
+    .content {
+      visibility: hidden;
       width: 60%;
       margin: 0 auto;
       text-align: center;
     }
-    .share-button {
-      background-color: red;
-      color: white;
-      padding: 10px 20px;
-      border-radius: 5px;
-      margin-top: 20px;
-      text-decoration: none;
-    }
 
-    /* Media queries for different screen sizes */
-    @media only screen and (max-width: 768px) {
-        h1 {
-          font-size: 24px;
-        }
-        p {
-          font-size: 18px;
-        }
-        .container {
-          width: 90%;
-        }
-      }
-      
-      @media only screen and (max-width: 480px) {
-        h1 {
-          font-size: 20px;
-        }
-        p {
-          font-size: 16px;
-        }
-        .container {
-          width: 95%;
-        }
-      }
+    .audio-controls button {
+      background-color: transparent;
+      border: none;
+      font-size: 24px;
+      color: #c5c5c5;
+      cursor: pointer;
+      outline: none;
+    }
   </style>
 </head>
 <body>
-  <div class="container">
-    <img src="/haha-no-how-about-no.gif" alt="A gif image">
-    <h1>Ummm........</h1>
-    <h1>NO😂😂!! I don't like you like that, you're like a brother to me😊</h1>
-    <button onclick="copyToClipboard()">Share your response</button>
-    <audio controls autoplay loop preload = "auto">
-      <source src="Bloody_Civilian-I_Don't_Like_You.mp3" type="audio/mpeg">
-      Your browser does not support the audio element.
-    </audio>
-    <script>
-        function copyToClipboard() {
-          navigator.clipboard.writeText(window.location.href).then(function() {
-            alert("Link copied to clipboard");
-          }, function(err) {
-            console.error("Failed to copy text: ", err);
-          });
+  <div class="curtain-container">
+    <div class="curtain-panel">
+      <!-- Checkbox element is here -->
+      <input type="checkbox" class="curtain-trigger" />
+      <div class="left-curtain curtain" data-title="Click to reveal Response..."></div>
+      <div class="right-curtain curtain" data-title="Click to reveal Response..."></div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="container">
+      <img src="/haha-no-how-about-no.gif" alt="A gif image">
+      <h1>I'm sorry, but I can't return your feelings</h1>
+      <h1>It's not you, it's me. I just don't feel the same way...</h1>
+      <div class="audio-controls">
+        <button id="play-pause-btn">&#9658;</button>
+      </div>
+      <audio id="myAudio" preload="auto" loop>
+        <source src="Bloody_Civilian-I_Don't_Like_You.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+      <script>
+        var audio = document.getElementById("myAudio");
+        var playPauseBtn = document.getElementById("play-pause-btn");
+
+        // Set the start and end points of the audio
+        var startTime = 15;
+        var endTime = 77;
+
+        // Store the time when the audio is paused
+        var pauseTime = 0;
+
+        // Set the current time, play the audio, and change the button icon to pause
+        audio.currentTime = startTime;
+        audio.play();
+        playPauseBtn.innerHTML = "&#10074;&#10074;";
+
+        // When the play/pause button is clicked, toggle the playback
+        playPauseBtn.addEventListener("click", function() {
+          if (audio.paused) {
+            // If the audio is paused, set the starting point and play the audio
+            audio.currentTime = pauseTime || startTime;
+            audio.play();
+            playPauseBtn.innerHTML = "&#10074;&#10074;";
+          } else {
+            // If the audio is playing, pause it and store the current time
+            audio.pause();
+            pauseTime = audio.currentTime;
+            playPauseBtn.innerHTML = "&#9658;";
+          }
+        });
+
+        // Update the play/pause button state when the audio is playing
+        audio.addEventListener("playing", function() {
+          playPauseBtn.innerHTML = "&#10074;&#10074;";
+        });
+
+        // Update the play/pause button state when the audio is paused
+        audio.addEventListener("pause", function() {
+          playPauseBtn.innerHTML = "&#9658;";
+        });
+
+        // Pause the audio if the current time is greater than the end time
+        audio.addEventListener("timeupdate", function() {
+          if (audio.currentTime >= endTime) {
+            audio.pause();
+            audio.currentTime = startTime;
+            playPauseBtn.innerHTML = "&#9658;";
+            audio.play();
+            playPauseBtn.innerHTML = "&#10074;&#10074;";
+          }
+        });
+
+        // When the audio ends, set the current time to the starting point and play the audio again
+        audio.addEventListener("ended", function() {
+          audio.currentTime = startTime;
+          audio.play();
+        });
+
+        // Function to reveal the content and hide the curtain
+        function revealContent() {
+          var curtainContainer = document.querySelector(".curtain-container");
+          var curtainLeft = document.querySelector(".left-curtain");
+          var curtainRight = document.querySelector(".right-curtain");
+          var rejectedContent = document.querySelector(".content");
+
+          curtainLeft.style.transitionDuration = "0.5s";
+          curtainRight.style.transitionDuration = "0.5s";
+          setTimeout(function() {
+            curtainLeft.style.transform = "translateX(-25%)";
+            curtainRight.style.transform = "translateX(25%)";
+          }, 100);
+          setTimeout(function() {
+            curtainLeft.style.transitionDuration = "1s";
+            curtainRight.style.transitionDuration = "1s";
+            curtainLeft.style.transform = "translateX(-50%)";
+            curtainRight.style.transform = "translateX(50%)";
+          }, 600);
+          setTimeout(function() {
+            curtainContainer.style.display = "none";
+            rejectedContent.style.visibility = "visible";
+          }, 1500);
+
+          // Autoplay the audio
+          audio.play();
         }
 
-        var audio = document.querySelector('audio');
-        audio.currentTime = 15;
-        audio.addEventListener('timeupdate', function() {
-          if (this.currentTime >= 77) {
-            this.currentTime = 15;
-          }
-        }, false);
-    </script>
+        // Attach event listener to the curtain container to reveal the content on click
+        var curtainContainer = document.querySelector(".curtain-container");
+        curtainContainer.addEventListener("click", revealContent);
+      </script>
+    </div>
   </div>
 </body>
 </html>

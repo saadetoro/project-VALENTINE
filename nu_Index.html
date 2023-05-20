@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>RIZZ her like a PRO-grammer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background-image: url("https://w0.peakpx.com/wallpaper/304/545/HD-wallpaper-happy-valentine-s-day-valentine-card-cute-balloon-butterfly-heart-white-teddy-bear-pink.jpg");
+      background-size: contain;
+      background-repeat: repeat;
+      background-attachment: fixed;
+    }
+    h1 {
+      text-align: left;
+      font-size: 36px;
+      color: black;
+      margin-left: 150px;
+    }
+    p {
+      text-align: left;
+      font-size: 24px;
+      color: black;
+      margin-left: 20px;
+    }
+    .container {
+      width: 80%;
+      margin: 0 auto;
+      text-align: left;
+      margin-left: 0px;
+      position: relative; /* add position:relative to the container */
+    }
+    .checkbox {
+      margin-top: 40px;
+      color: black;
+      margin-left: 135px;
+    }
+    
+    #share-button {
+      position: absolute;
+      bottom: -60px;
+      left: 33.5%;
+      transform: translateX(-50%);
+      padding: 10px 20px;
+      background-color: #ff69b4;
+      color: white;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  
+    #share-button:hover {
+      background-color: #ff3e8e;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="/love-you-love.gif" alt="A gif image">
+    <label class="checkbox">
+      <input type="radio" name="gender" value="male"> Male
+    </label>
+    <label class="checkbox">
+      <input type="radio" name="gender" value="female"> Female
+    </label>
+    <label class="checkbox">
+      <input type="radio" name="gender" value="nonbinary"> Non-Binary
+    </label>
+    <p>Nothing would make me happier than being able to say that you're the person by my side.</p>
+    <p>So with that being said....</p>
+    <h1>Will you be my <span id="gender-label"></span>?</h1>
+    <label class="checkbox">
+      <input type="radio" name="answer" value="yes" id="yes"> Yes
+    </label>
+    <label class="checkbox">
+      <input type="radio" name="answer" value="maybe" id="maybe"> Maybe
+    </label>
+    <label class="checkbox">
+      <input type="radio" name="answer" value="no" id="no"> No
+    </label>
+    <button id="share-button">Share Response</button>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('input[type="radio"][name="gender"]').change(function() {
+        var selectedGender = $('input[type="radio"][name="gender"]:checked').val();
+        var genderLabel = '';
+
+        if (selectedGender === 'male') {
+          genderLabel = 'boyfriend';
+        } else if (selectedGender === 'female') {
+          genderLabel = 'girlfriend';
+        } else if (selectedGender === 'nonbinary') {
+          genderLabel = 'partner';
+        }
+
+        $('#gender-label').text(genderLabel);
+      });
+
+      $('#share-button').click(function() {
+        var selectedAnswer = $('input[type="radio"][name="answer"]:checked').val();
+        var genderLabel = $('#gender-label').text();
+
+        if (selectedAnswer && genderLabel !== '') {
+          var message = "I just answered '" + selectedAnswer + "' to the question 'Will you be my " + genderLabel + "?'";
+          var link = '';
+
+          if (selectedAnswer === 'yes') {
+            link = 'yes.html';
+          } else if (selectedAnswer === 'maybe') {
+            link = 'maybe.html';
+          } else if (selectedAnswer === 'no') {
+            link = 'no.html';
+          }
+
+          var fullLink = window.location.origin + '/' + link;
+
+          navigator.clipboard.writeText(fullLink)
+            .then(function() {
+              window.alert("Link copied to clipboard!");
+            })
+            .catch(function() {
+              window.alert("Failed to copy link to clipboard!");
+            });
+        } else {
+          window.alert("Please select a gender and answer before sharing.");
+        }
+      });
+    });
+  </script>
+</body>
+</html>
